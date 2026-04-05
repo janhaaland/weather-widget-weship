@@ -19,6 +19,24 @@
   }
 }
 
+@keyframes rain {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(420px);
+    opacity: 0;
+  }
+}
+
+.animate-rain {
+  animation: rain linear infinite;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

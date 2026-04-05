@@ -41,7 +41,7 @@ export default function WeatherWidget() {
   }, []);
 
   return (
-    <div className="relative w-[400px] aspect-square rounded-[32px] overflow-hidden bg-[#3a4a3a] shadow-2xl">
+    <div className="relative w-[400px] aspect-square rounded-[16px] overflow-hidden bg-[#3a4a3a] shadow-2xl">
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -50,6 +50,29 @@ export default function WeatherWidget() {
 
       {/* Gradient fallback/overlay for text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
+
+      {/* Rain animation */}
+      <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
+        {Array.from({ length: 40 }).map((_, i) => {
+          const seed = i / 40;
+          const left = ((seed * 7919) % 100);
+          const height = 12 + ((seed * 1301) % 16);
+          const delay = ((seed * 4253) % 200) / 100;
+          const duration = 0.6 + ((seed * 3571) % 40) / 100;
+          return (
+            <div
+              key={i}
+              className="absolute w-[1px] bg-white/20 rounded-full animate-rain"
+              style={{
+                left: `${left}%`,
+                height: `${height}px`,
+                animationDelay: `${delay}s`,
+                animationDuration: `${duration}s`,
+              }}
+            />
+          );
+        })}
+      </div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col justify-between h-full p-8">
