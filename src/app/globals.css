@@ -21,10 +21,16 @@
 
 @keyframes rain {
   0% {
-    transform: translateY(-20px);
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  5% {
     opacity: 0;
   }
   10% {
+    opacity: 1;
+  }
+  90% {
     opacity: 1;
   }
   100% {
@@ -34,7 +40,9 @@
 }
 
 .animate-rain {
+  opacity: 0;
   animation: rain linear infinite;
+  animation-fill-mode: forwards;
 }
 
 body {
